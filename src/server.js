@@ -1,19 +1,21 @@
-const express = require('express');
+const express = require("express");
+const cors = require("cors");
 const app = express();
-const cors = require('cors');
-const database = require('./db');
+
+const routes = require("./routes");
+const database = require("./db");
 
 app.use(cors());
 app.use(express.json());
 
-database.connect();
+database
+  .connect()
+  .then(() => console.info("Conexão com o mongodb estabelecida!"))
+  .catch((error) =>
+    console.error("Erro ao tentar estabelecer conexão com o mongodb: ", error)
+  );
 
-app.get('/health', (__, res) => {
-    res.status(200).send({
-        status: 'OK',
-        timestamp: new Date().toISOString()
-    })
-});
+app.use("/", routes);
 
 const PORT = 3000;
 
