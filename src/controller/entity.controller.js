@@ -11,11 +11,16 @@ const insert = async (req, res) => {
   }
 };
 
-const getAll = async (req, res) => {
+const list = async (req, res) => {
   try {
     const entityName = req.params.entity;
+    let {query, limit, page} = req.query;
 
-    const result = await service.getAll(entityName);
+    query = query ? JSON.parse(query) : null;
+    limit = limit ? Number(limit) : null;
+    page = page ? Number(page) : null;
+  
+    const result = await service.list(entityName, query, limit, page);
     res.status(200).json(result);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -44,4 +49,4 @@ const updateById = async (req, res) => {
   }
 };
 
-module.exports = { insert, getAll, getById, updateById };
+module.exports = { insert, list, getById, updateById };
