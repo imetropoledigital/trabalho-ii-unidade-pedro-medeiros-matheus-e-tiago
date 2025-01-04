@@ -2,3 +2,30 @@ GET http://localhost:3000/health
 
 ###
 
+POST http://localhost:3000/students
+Content-Type: application/json
+
+{
+  "name": "Pedro",
+  "email": "pedro@example.com",
+  "age": 24
+}
+
+###
+
+GET http://localhost:3000/students
+
+###
+
+GET http://localhost:3000/students/6778b326ea6f85ef46b76d5f
+
+###
+
+PUT http://localhost:3000/students/6778b326ea6f85ef46b76d5f
+Content-Type: application/json
+
+{
+  "name": "Pedro",
+  "email": "pedro@gmail.com",
+  "age": 24
+}
