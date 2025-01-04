@@ -11,7 +11,7 @@ router.get("/health", (__, res) => {
 });
 
 router.post("/:entity", controller.insert);
-router.get("/:entity", controller.getAll);
+router.get("/:entity", controller.list);
 router.get("/:entity/:id", controller.getById);
 router.put("/:entity/:id", controller.updateById);
 
