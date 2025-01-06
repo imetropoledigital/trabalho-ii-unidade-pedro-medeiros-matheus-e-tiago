@@ -7,7 +7,7 @@ Content-Type: application/json
 
 {
   "name": "Pedro",
-  "email": "pedro@example.com",
+  "email": "pedro7@example.com",
   "age": 24
 }
 
@@ -32,4 +32,8 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/students?query={}&limit=1&page=3
+GET http://localhost:3000/students?query={}&limit=2&page=3
+
+###
+
+GET http://localhost:3000/students?fields=name,age
