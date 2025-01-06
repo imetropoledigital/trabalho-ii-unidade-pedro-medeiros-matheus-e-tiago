@@ -29,3 +29,7 @@ Content-Type: application/json
   "email": "pedro@gmail.com",
   "age": 24
 }
+
+###
+
+GET http://localhost:3000/students?query={}&limit=1&page=3
