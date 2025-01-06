@@ -10,13 +10,23 @@ const insert = async (entityName, body) => {
   }
 };
 
-const list = async (entityName, query = {}, resultsPerPage = 0, page = 0) => {
+const list = async (
+  entityName,
+  query = {},
+  resultsPerPage = 0,
+  page = 0,
+  fields = ""
+) => {
   if (!exists(entityName)) throw new Error("Esta coleção não existe!");
 
   try {
     const Model = await getModel(entityName);
-    
-    return await Model.find(query).skip(resultsPerPage * page).limit(resultsPerPage);
+    const projection = fields ? fields.replaceAll(",", " ") : fields;
+
+    return await Model.find(query)
+      .select(projection)
+      .skip(resultsPerPage * page)
+      .limit(resultsPerPage);
   } catch (error) {
     throw new Error(
       `Não foi possível listar os itens da coleção: ${entityName}.`

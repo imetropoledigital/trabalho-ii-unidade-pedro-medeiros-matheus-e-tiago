@@ -14,13 +14,13 @@ const insert = async (req, res) => {
 const list = async (req, res) => {
   try {
     const entityName = req.params.entity;
-    let {query, limit, page} = req.query;
+    let { query, limit, page, fields } = req.query;
 
     query = query ? JSON.parse(query) : null;
     limit = limit ? Number(limit) : null;
     page = page ? Number(page) : null;
-  
-    const result = await service.list(entityName, query, limit, page);
+
+    const result = await service.list(entityName, query, limit, page, fields);
     res.status(200).json(result);
   } catch (error) {
     res.status(400).json({ error: error.message });
