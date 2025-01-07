@@ -118,6 +118,80 @@ Content-Type: application/json
 }
 ```
 
+### 5. Paginação de Dados
+
+**GET** `http://localhost:3000/students?limit=<>&page=<>`
+
+Onde:
+
+- `limit`: Número de resultados por página.
+- `page`: Número da página que deseja consultar.
+
+Exemplo (Página 3 com 2 registros por página):
+
+```bash
+GET http://localhost:3000/students?limit=2&page=3
+
+[
+  {
+    "_id": "64b8e3b6a2c5f3b67c9b1234",
+    "name": "Carlos",
+    "age": 22,
+    "email": "carlos@example.com"
+  },
+  {
+    "_id": "64b8e3b6a2c5f3b67c9b5678",
+    "name": "Ana",
+    "age": 29,
+    "email": "ana@example.com"
+  }
+]
+```
+
+### 6. Consulta com Projeção
+
+É possível incluir ou excluir campos na resposta utilizando o parâmetro fields.
+
+#### Exemplos
+
+- Inclusão de campos
+
+  **GET** `http://localhost:3000/students?fields=name,age`
+
+  ```bash
+  [
+   {
+      "_id": "64b8e3b6a2c5f3b67c9b1234",
+      "name": "Carlos",
+      "age": 22
+   },
+   {
+      "_id": "64b8e3b6a2c5f3b67c9b5678",
+      "name": "Ana",
+      "age": 29
+   }
+  ]
+  ```
+
+- Exclusão de campos: Para excluir um campo, adicione um sinal de menos (-) antes do nome do campo.
+
+  **GET** `http://localhost:3000/students?fields=-name`
+
+  ```bash
+  [
+   {
+      "_id": "64b8e3b6a2c5f3b67c9b1234",
+      "email": "carlos@example.com",
+      "age": 22
+   },
+   {
+      "_id": "64b8e3b6a2c5f3b67c9b5678",
+      "email": "ana@example.com"
+      "age": 29
+   }
+  ]
+  ```
+
 ## Contribuidores
 
 - PEDRO LUCAS FARIAS FIGUEIREDO DE MEDEIROS
