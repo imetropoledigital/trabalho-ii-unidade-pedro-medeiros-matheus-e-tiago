@@ -192,6 +192,30 @@ GET http://localhost:3000/students?limit=2&page=3
   ]
   ```
 
+### 7. Aplicação de Filtros
+
+Como mencionado, a API suporta a aplicação de filtros dinâmicos nas coleções, seguindo o padrão do MongoDB. Os usuários podem utilizar operadores de comparação (`$gt`, `$lt`, `$eq`, `$gte`, `$lte`, `$ne`, etc.) e lógicos (`$and`, `$or`, `$not`, `$nor`, etc.). Consulte a [documentação oficial do MongoDB](https://www.mongodb.com/docs/manual/reference/operator/query/) para mais detalhes.
+
+Para aplicar filtros, utilize o parâmetro `query` e passe o objeto que representa o filtro desejado.
+
+- **Exemplo**
+
+  ```bash
+  GET http://localhost:3000/students?query={age:{gte:25}}
+  ```
+
+- **Resultado**
+  ```bash
+  [
+   {
+      "_id": "64b8e3b6a2c5f3b67c9b5678",
+      "name": "Ana",
+      "age": 29,
+      "email": "ana@example.com"
+   }
+  ]
+  ```
+
 ## Contribuidores
 
 - PEDRO LUCAS FARIAS FIGUEIREDO DE MEDEIROS
